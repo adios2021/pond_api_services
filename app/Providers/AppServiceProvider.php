@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\UserRepository as CustomUserRepository;
 use Laravel\Passport\Bridge\UserRepository as PassportUserRepository;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         // Add custom user repository
         $this->app->bind(PassportUserRepository::class, CustomUserRepository::class);
     }
