@@ -31,21 +31,9 @@ use Illuminate\Http\Request;
 //     });
 
 Route::group(['middleware' => ['auth:api']], function () {
-
-    // users route
-    Route::prefix('users')
-    ->group(function () {
-        Route::get('/', function () {
-            $response = array (
-                'user' => array (
-                    'first_name' => 'John',
-                    'last_name' => 'Doe',
-                    'email' => 'johndoe@gmail.com'
-                ),
-                'code' => 200,
-            );
-            return response()->json($response, $response['code']);
-        });
-    });
+  
+  Route::get('/profile', function (Request $request) {
+    return response()->json($request->user());
+  });
 
 });
